@@ -21,16 +21,30 @@ h2 {
   text-shadow: 1px 1px 4px #000;
 }
 
-img {
-  display: block;
-  margin: 20px auto;
-  border: 3px solid #ffcc00;
-  border-radius: 10px;
-  box-shadow: 0 0 12px #ffcc00;
-  width: 150px;
-  height: auto;
+.digimon-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  padding: 15px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
+.digimon-image img {
+  width: 150px;
+  height: auto;
+  border: 3px solid #ffcc00;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #ffcc00;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.digimon-image img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ffd633, 0 0 30px #ffcc00;
+}
 
 button {
   background: linear-gradient(180deg, #ffcc00, #ff9900);
@@ -60,4 +74,3 @@ p {
 strong {
   color: #ffcc00;
 }
-

@@ -46,7 +46,11 @@ function Detalles() {
       <button onClick={toggleFavorite}>
         {isFavorite ? "❤️ Quitar de favoritos" : "🤍 Agregar a favoritos"}
       </button>
-      <img src={digimon.img} alt={digimon.name} width="200" />
+
+      <div className="digimon-image">
+        <img src={digimon.img} alt={digimon.name} />
+      </div>
+
       <h2>Información</h2>
       <p><strong>Nombre:</strong> {digimon.name}</p>
       <p><strong>Nivel:</strong> {digimon.level}</p>
