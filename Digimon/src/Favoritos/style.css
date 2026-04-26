@@ -1,0 +1,58 @@
+/* Contenedor principal */
+div {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  text-align: center;
+}
+
+/* Título */
+h1 {
+  color: #ffcc00;
+  text-shadow: 2px 2px 6px #000;
+  margin-bottom: 20px;
+}
+
+/* Mensaje cuando no hay favoritos */
+p {
+  font-size: 16px;
+  color: #f0f0f0;
+  margin-top: 10px;
+}
+
+/* Lista de favoritos */
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  background: rgba(255, 255, 255, 0.1);
+  margin: 10px auto;
+  padding: 12px;
+  border-radius: 8px;
+  width: 80%;
+  transition: background 0.3s, transform 0.2s;
+}
+
+li:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.03);
+}
+
+/* Enlaces a detalle */
+li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+li a:hover {
+  color: #ffcc00;
+}

@@ -1,89 +1,73 @@
-import { useState, useEffect } from 'react'
-import "./style.css";
+import { useState, useEffect } from "react";
+import { Link } from "react-router";
 
 interface Digimon {
-  name: string
-  img: string
-  level: string
+  name: string;
+  img: string;
+  level: string;
 }
 
 function Home() {
-  const [digimons, setDigimons] = useState<Digimon[]>([])
-  const [busqueda, setBusqueda] = useState('')
-  const [nivelFiltro, setNivelFiltro] = useState<string>('')
+  const [digimons, setDigimons] = useState<Digimon[]>([]);
+  const [busqueda, setBusqueda] = useState("");
+  const [nivelFiltro, setNivelFiltro] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const res = await fetch("https://digimon-api.vercel.app/api/digimon")
-        const data = await res.json()
-        setDigimons(data)
-      } catch (error) {
-        console.error("Error cargando Digimon:", error)
-      }
-    }
-    fetchData()
-  }, [])
+      const res = await fetch("https://digimon-api.vercel.app/api/digimon");
+      const data = await res.json();
+      setDigimons(data);
+      localStorage.setItem("allDigimon", JSON.stringify(data));
+    };
+    fetchData();
+  }, []);
 
-  const digimonsFiltrados = digimons.filter((digi) =>
-    (busqueda.length < 3 || digi.name.toLowerCase().includes(busqueda.toLowerCase())) &&
-    (nivelFiltro === '' || digi.level === nivelFiltro)
-  )
+  const niveles = Array.from(new Set(digimons.map((d) => d.level)));
 
-  const niveles = Array.from(new Set(digimons.map(d => d.level)))
+  const digimonsFiltrados = digimons.filter(
+    (d) =>
+      (busqueda.length < 3 ||
+        d.name.toLowerCase().includes(busqueda.toLowerCase())) &&
+      (nivelFiltro === "" || d.level === nivelFiltro)
+  );
 
   return (
-    <>
+    <div>
+      <h1>Lista de Digimon</h1>
+
       <div className="filtros">
-        <button onClick={() => setNivelFiltro('')}>Todos</button>
+        <input
+          type="text"
+          placeholder="Buscar por nombre..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+        />
+
+        <button onClick={() => setNivelFiltro("")}>Todos</button>
         {niveles.map((nivel) => (
           <button
             key={nivel}
             onClick={() => setNivelFiltro(nivel)}
-            className={nivelFiltro === nivel ? 'activo' : ''}
+            className={nivelFiltro === nivel ? "activo" : ""}
           >
             {nivel}
           </button>
         ))}
       </div>
 
-      <input
-        type="text"
-        placeholder="Buscar Digimon..."
-        value={busqueda}
-        onChange={(e) => setBusqueda(e.target.value)}
-      />
-
-      <div className="tabla-container">
-        <h2>Lista de Digimon</h2>
-        <table className="tabla-digimon">
-          <thead>
-            <tr>
-              <th>Imagen</th>
-              <th>Nombre</th>
-              <th>Nivel</th>
-            </tr>
-          </thead>
-          <tbody>
-            {digimonsFiltrados.map((digi, index) => (
-              <tr key={index}
-                  className={
-                    busqueda.length >= 3 &&
-                    digi.name.toLowerCase().includes(busqueda.toLowerCase())
-                      ? 'resaltado'
-                      : ''
-                  }
-              >
-                <td><img src={digi.img} alt={digi.name} width="60" /></td>
-                <td>{digi.name}</td>
-                <td>{digi.level}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
-  )
+      <ul>
+        {digimonsFiltrados.map((digi) => (
+          <li key={digi.name}>
+            <Link to={`/digimon/${digi.name}`}>
+              <img src={digi.img} alt={digi.name} width="50" /> {digi.name} -{" "}
+              {digi.level}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default Home
+export default Home;
+

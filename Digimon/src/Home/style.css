@@ -1,0 +1,94 @@
+div {
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #ffcc00;
+  text-shadow: 2px 2px 6px #000;
+  margin-bottom: 20px;
+}
+
+.filtros {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.filtros input[type="text"] {
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #ffcc00;
+  width: 60%;
+  font-size: 16px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.filtros input::placeholder {
+  color: #ddd;
+}
+
+.filtros button {
+  background: linear-gradient(180deg, #ffcc00, #ff9900);
+  color: #0a2a6b;
+  border: none;
+  padding: 8px 14px;
+  margin: 5px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.filtros button:hover {
+  background: linear-gradient(180deg, #ffd633, #ffb733);
+  transform: scale(1.08);
+}
+
+.filtros .activo {
+  background: #0a2a6b;
+  color: #ffcc00;
+  border: 2px solid #ffcc00;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+li {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.2s, background 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+li:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+li img {
+  border: 3px solid #ffcc00;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ffcc00;
+  margin-bottom: 10px;
+}
+
+li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  display: block;
+  transition: color 0.2s;
+}
+
+li a:hover {
+  color: #ffcc00;
+}
