@@ -16,8 +16,12 @@ export default function Login() {
       await signInWithEmailAndPassword(auth, correo, contrasena);
       alert('¡Bienvenido!');
       navigate('/');
-    } catch (error: any) {
-      alert('Error: ' + error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert('Error: ' + error.message);
+      } else {
+        alert('Error desconocido');
+      }
     }
   };
 

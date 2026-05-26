@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Favoritos() {
-  const [favorites, setFavorites] = useState<string[]>([]);
-
-  useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("favorites") || "[]");
-    setFavorites(stored);
-  }, []);
+  const [favorites] = useState<string[]>(() =>
+    JSON.parse(localStorage.getItem("favorites") || "[]") as string[]
+  );
 
   return (
     <div>

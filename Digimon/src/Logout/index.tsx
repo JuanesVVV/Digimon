@@ -11,8 +11,12 @@ export default function Logout() {
       await signOut(auth);
       alert('Has cerrado sesión correctamente');
       navigate('/login'); // Redirige al login tras cerrar sesión
-    } catch (error: any) {
-      alert('Error al cerrar sesión: ' + error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert('Error al cerrar sesión: ' + error.message);
+      } else {
+        alert('Error al cerrar sesión: desconocido');
+      }
     }
   };
 

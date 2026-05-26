@@ -18,7 +18,10 @@ function Original() {
       const res = await fetch("https://digimon-api.vercel.app/api/digimon");
       const data = await res.json();
       setDigimons(data);
-      nuevoDigimon(data);
+      if (data.length > 0) {
+        const randomIndex = Math.floor(Math.random() * data.length);
+        setActual(data[randomIndex]);
+      }
     };
     fetchData();
   }, []);

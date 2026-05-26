@@ -15,8 +15,12 @@ export default function Registro() {
       await createUserWithEmailAndPassword(auth, correo, contrasena);
       alert('Cuenta creada correctamente. ¡Bienvenido!');
       navigate('/login');
-    } catch (error: any) {
-      alert('Error al registrarse: ' + error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert('Error al registrarse: ' + error.message);
+      } else {
+        alert('Error al registrarse: desconocido');
+      }
     }
   };
 
