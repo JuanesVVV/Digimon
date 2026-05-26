@@ -1,11 +1,8 @@
+// vite.config.js
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react' // O lo que estés usando
 
-// https://vite.dev/config/
 export default defineConfig({
-  base: '/Digimon/Digimon/',
-  build: {
-    outDir: 'docs',
-  },
   plugins: [react()],
+  base: '/Digimon/', // <--- ESTA ES LA CLAVE
 })
